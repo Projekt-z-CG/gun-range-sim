@@ -10,6 +10,9 @@ public class InputManager : MonoBehaviour
     private PlayerInput.WalkingActions walking;
     private PlayerMotor motor;
     private PlayerLook look;
+    [SerializeField] Gun gun;
+
+    Coroutine fireCoroutine;
 
     void Awake()
     {
@@ -21,6 +24,9 @@ public class InputManager : MonoBehaviour
 
         walking.Crouch.performed += ctx => motor.Crouch();
         walking.Sprint.performed += ctx => motor.Sprint();
+
+        walking.Shoot.started += _ => StartFiring();
+        walking.Shoot.canceled += _ => StopFiring();
     }
 
     // Update is called once per frame
@@ -32,6 +38,19 @@ public class InputManager : MonoBehaviour
     void LateUpdate()
     {
         look.ProcessLook(walking.Look.ReadValue<Vector2>());
+    }
+
+    void StartFiring()
+    {
+        fireCoroutine = StartCoroutine(gun.RapidFire());
+    }
+
+    void StopFiring()
+    {
+        if (fireCoroutine != null)
+        {
+            StopCoroutine(fireCoroutine);
+        }    
     }
 
     private void OnEnable()
