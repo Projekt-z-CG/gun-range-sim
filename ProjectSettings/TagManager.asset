@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Walls
+  - FxTemporaire
+  - FinishButton
+  - StartButton
   layers:
   - Default
   - TransparentFX

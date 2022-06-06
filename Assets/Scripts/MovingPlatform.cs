@@ -5,31 +5,47 @@ using UnityEngine;
 public class MovingPlatform : MonoBehaviour {
  
     public float speed;
+    public bool triggered = false;
  
     void Start ()
     {
-        if(speed == 0) speed = Random.Range(10.0f,20.0f);
-        // StartCoroutine(removePlatform());
+        if(speed == 0) 
+            speed = Random.Range(5.0f,10.0f);
     }
 
     void Update ()
     {
-        Debug.Log(speed);
         transform.Translate(Vector2.left * speed * Time.deltaTime);
-        Debug.Log(speed);
     }
 
-    void OnCollisionEnter(Collision collision)
-    {
-        Debug.Log("Object that collided with me: " + collision.gameObject.name);
-        speed = -speed;
+    void OnTriggerEnter(Collider collider) {
+        if(collider.gameObject.name == "Structure")
+        {
+            speed = -speed;
+        }
+        if(collider.gameObject.tag == "Player")
+        {
+            Debug.Log("Trigger enter");
+            collider.transform.parent = transform;
+            // StartCoroutine(deactivatePlatform());
+        }
     }
 
-    IEnumerator destroyPlatform()
+    void OnTriggerExit(Collider collider) {
+        Debug.Log(collider.gameObject.name + " Trigger exit");
+        if(collider.tag == "Player") 
+        {
+            Debug.Log("Trigger exit");
+            collider.gameObject.transform.parent = GameObject.Find("Structure").transform;
+            // collider.gameObject.transform.SetParent(GameObject.Find("Structure").transform, true);
+        }
+    }
+
+    IEnumerator deactivatePlatform()
     {
-        yield return new WaitForSeconds (2);
+        yield return new WaitForSeconds (5);
         gameObject.SetActive(false);
-        yield return new WaitForSeconds (2);
+        yield return new WaitForSeconds (5);
         gameObject.SetActive(true);
     }
 }
