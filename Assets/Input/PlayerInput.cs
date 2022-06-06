@@ -80,6 +80,24 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Reload"",
+                    ""type"": ""Button"",
+                    ""id"": ""b719e4a3-4552-4d0a-935e-7c18f14dbd6a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ToggleFireRate"",
+                    ""type"": ""Button"",
+                    ""id"": ""b3052a23-f4dc-409c-97f9-daa4c6dbab40"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -203,6 +221,28 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""action"": ""Shoot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""88015b09-6483-49af-83b1-c9878eaeb3f9"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Reload"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""32059687-1a86-4d60-8d1c-e4bc1d03d270"",
+                    ""path"": ""<Keyboard>/t"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ToggleFireRate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -217,6 +257,8 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         m_Walking_Crouch = m_Walking.FindAction("Crouch", throwIfNotFound: true);
         m_Walking_Sprint = m_Walking.FindAction("Sprint", throwIfNotFound: true);
         m_Walking_Shoot = m_Walking.FindAction("Shoot", throwIfNotFound: true);
+        m_Walking_Reload = m_Walking.FindAction("Reload", throwIfNotFound: true);
+        m_Walking_ToggleFireRate = m_Walking.FindAction("ToggleFireRate", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -282,6 +324,8 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_Walking_Crouch;
     private readonly InputAction m_Walking_Sprint;
     private readonly InputAction m_Walking_Shoot;
+    private readonly InputAction m_Walking_Reload;
+    private readonly InputAction m_Walking_ToggleFireRate;
     public struct WalkingActions
     {
         private @PlayerInput m_Wrapper;
@@ -292,6 +336,8 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         public InputAction @Crouch => m_Wrapper.m_Walking_Crouch;
         public InputAction @Sprint => m_Wrapper.m_Walking_Sprint;
         public InputAction @Shoot => m_Wrapper.m_Walking_Shoot;
+        public InputAction @Reload => m_Wrapper.m_Walking_Reload;
+        public InputAction @ToggleFireRate => m_Wrapper.m_Walking_ToggleFireRate;
         public InputActionMap Get() { return m_Wrapper.m_Walking; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -319,6 +365,12 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Shoot.started -= m_Wrapper.m_WalkingActionsCallbackInterface.OnShoot;
                 @Shoot.performed -= m_Wrapper.m_WalkingActionsCallbackInterface.OnShoot;
                 @Shoot.canceled -= m_Wrapper.m_WalkingActionsCallbackInterface.OnShoot;
+                @Reload.started -= m_Wrapper.m_WalkingActionsCallbackInterface.OnReload;
+                @Reload.performed -= m_Wrapper.m_WalkingActionsCallbackInterface.OnReload;
+                @Reload.canceled -= m_Wrapper.m_WalkingActionsCallbackInterface.OnReload;
+                @ToggleFireRate.started -= m_Wrapper.m_WalkingActionsCallbackInterface.OnToggleFireRate;
+                @ToggleFireRate.performed -= m_Wrapper.m_WalkingActionsCallbackInterface.OnToggleFireRate;
+                @ToggleFireRate.canceled -= m_Wrapper.m_WalkingActionsCallbackInterface.OnToggleFireRate;
             }
             m_Wrapper.m_WalkingActionsCallbackInterface = instance;
             if (instance != null)
@@ -341,6 +393,12 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Shoot.started += instance.OnShoot;
                 @Shoot.performed += instance.OnShoot;
                 @Shoot.canceled += instance.OnShoot;
+                @Reload.started += instance.OnReload;
+                @Reload.performed += instance.OnReload;
+                @Reload.canceled += instance.OnReload;
+                @ToggleFireRate.started += instance.OnToggleFireRate;
+                @ToggleFireRate.performed += instance.OnToggleFireRate;
+                @ToggleFireRate.canceled += instance.OnToggleFireRate;
             }
         }
     }
@@ -353,5 +411,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         void OnCrouch(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
         void OnShoot(InputAction.CallbackContext context);
+        void OnReload(InputAction.CallbackContext context);
+        void OnToggleFireRate(InputAction.CallbackContext context);
     }
 }

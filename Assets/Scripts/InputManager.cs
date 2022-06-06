@@ -27,6 +27,8 @@ public class InputManager : MonoBehaviour
 
         walking.Shoot.started += _ => StartFiring();
         walking.Shoot.canceled += _ => StopFiring();
+        walking.Reload.performed += _ => gun.Reload();
+        walking.ToggleFireRate.performed += _ => gun.ToggleFireRate();
     }
 
     // Update is called once per frame
