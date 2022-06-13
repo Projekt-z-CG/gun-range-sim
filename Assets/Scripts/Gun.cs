@@ -1,7 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System;
-using System.Threading;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,6 +10,8 @@ public class Gun : MonoBehaviour
     WaitForSeconds reloadWait;
     public Text ammoDisplay;
     public Text fireRateDisplay;
+    public ParticleSystem muzzleFlash;
+
     [SerializeField] bool rapidFire = false;
     [SerializeField] float range = 50f;
     [SerializeField] float damage = 10f;
@@ -35,6 +35,7 @@ public class Gun : MonoBehaviour
     public void Shoot()
     {
         RaycastHit hit;
+        muzzleFlash.Play();
         if (Physics.Raycast(cam.position, cam.forward, out hit, range))
         {
             if (hit.collider.GetComponent<Damageable>() != null)

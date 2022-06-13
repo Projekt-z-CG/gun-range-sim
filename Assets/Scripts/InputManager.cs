@@ -52,7 +52,7 @@ public class InputManager : MonoBehaviour
         if (fireCoroutine != null)
         {
             StopCoroutine(fireCoroutine);
-        }    
+        }
     }
 
     private void OnEnable()
