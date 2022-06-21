@@ -7,7 +7,7 @@ public class GameModeMenu : MonoBehaviour
 {
     public void OnZombieButtonClicked()
     {
-        SceneManager.LoadScene("1v1 Map");
+        SceneManager.LoadScene("Zombie Map");
     }
 
     public void OnParkourButtonClicked()

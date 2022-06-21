@@ -8,6 +8,7 @@ TagManager:
   - FxTemporaire
   - FinishButton
   - StartButton
+  - Weapon
   layers:
   - Default
   - TransparentFX

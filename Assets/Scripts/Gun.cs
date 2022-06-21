@@ -14,8 +14,8 @@ public class Gun : MonoBehaviour
 
     [SerializeField] bool rapidFire = false;
     [SerializeField] float range = 50f;
-    [SerializeField] float damage = 10f;
-    [SerializeField] float fireRate = 5f;
+    public float damage = 10f;
+    [SerializeField] float fireRate = 10f;
     [SerializeField] int maxAmmunition = 150;
     [SerializeField] int magSize = 30;
     [SerializeField] int currentAmmunition;
@@ -41,6 +41,12 @@ public class Gun : MonoBehaviour
             if (hit.collider.GetComponent<Damageable>() != null)
             {
                 hit.collider.GetComponent<Damageable>().TakeDamage(damage, hit.point, hit.normal);
+            }
+
+            var hitBox = hit.collider.GetComponent<Hitbox>();
+            if (hitBox != null)
+            {
+                hitBox.OnRayCastHit(this);
             }
         }
         currentAmmunition--;
