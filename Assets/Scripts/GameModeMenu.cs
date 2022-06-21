@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class GameModeMenu : MonoBehaviour
 {
-    public void On1v1ButtonClicked()
+    public void OnZombieButtonClicked()
     {
         SceneManager.LoadScene("1v1 Map");
     }
