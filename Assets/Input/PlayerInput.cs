@@ -98,6 +98,51 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ADS"",
+                    ""type"": ""Button"",
+                    ""id"": ""b5cfd473-da41-43ef-81b0-700e8e4af41a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Gun1"",
+                    ""type"": ""Button"",
+                    ""id"": ""80e19f0a-55c0-4bab-af54-959f3031acc2"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Gun2"",
+                    ""type"": ""Button"",
+                    ""id"": ""b4cb75f4-b6e5-4bb7-92e4-b1e809fe86ce"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Gun3"",
+                    ""type"": ""Button"",
+                    ""id"": ""cda38a76-7be4-4a9d-be7f-9a94ddb9b96f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Gun4"",
+                    ""type"": ""Button"",
+                    ""id"": ""02b37359-20ed-4630-aa13-2583235805bf"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -243,6 +288,61 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""action"": ""ToggleFireRate"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8a43a0a7-47b6-46bd-a35c-8321e73f2aa7"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ADS"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e67e3be6-2ecb-4828-9afc-ba3522d0b587"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Gun1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5297c98f-9af0-44d3-8b70-e346e3584a92"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Gun2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f9b9bba2-37c6-4b65-ad88-61c636ea46b4"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Gun3"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e1eb5881-9463-477a-857e-d9c97f032d98"",
+                    ""path"": ""<Keyboard>/4"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Gun4"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -259,6 +359,11 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         m_Walking_Shoot = m_Walking.FindAction("Shoot", throwIfNotFound: true);
         m_Walking_Reload = m_Walking.FindAction("Reload", throwIfNotFound: true);
         m_Walking_ToggleFireRate = m_Walking.FindAction("ToggleFireRate", throwIfNotFound: true);
+        m_Walking_ADS = m_Walking.FindAction("ADS", throwIfNotFound: true);
+        m_Walking_Gun1 = m_Walking.FindAction("Gun1", throwIfNotFound: true);
+        m_Walking_Gun2 = m_Walking.FindAction("Gun2", throwIfNotFound: true);
+        m_Walking_Gun3 = m_Walking.FindAction("Gun3", throwIfNotFound: true);
+        m_Walking_Gun4 = m_Walking.FindAction("Gun4", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -326,6 +431,11 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_Walking_Shoot;
     private readonly InputAction m_Walking_Reload;
     private readonly InputAction m_Walking_ToggleFireRate;
+    private readonly InputAction m_Walking_ADS;
+    private readonly InputAction m_Walking_Gun1;
+    private readonly InputAction m_Walking_Gun2;
+    private readonly InputAction m_Walking_Gun3;
+    private readonly InputAction m_Walking_Gun4;
     public struct WalkingActions
     {
         private @PlayerInput m_Wrapper;
@@ -338,6 +448,11 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         public InputAction @Shoot => m_Wrapper.m_Walking_Shoot;
         public InputAction @Reload => m_Wrapper.m_Walking_Reload;
         public InputAction @ToggleFireRate => m_Wrapper.m_Walking_ToggleFireRate;
+        public InputAction @ADS => m_Wrapper.m_Walking_ADS;
+        public InputAction @Gun1 => m_Wrapper.m_Walking_Gun1;
+        public InputAction @Gun2 => m_Wrapper.m_Walking_Gun2;
+        public InputAction @Gun3 => m_Wrapper.m_Walking_Gun3;
+        public InputAction @Gun4 => m_Wrapper.m_Walking_Gun4;
         public InputActionMap Get() { return m_Wrapper.m_Walking; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -371,6 +486,21 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @ToggleFireRate.started -= m_Wrapper.m_WalkingActionsCallbackInterface.OnToggleFireRate;
                 @ToggleFireRate.performed -= m_Wrapper.m_WalkingActionsCallbackInterface.OnToggleFireRate;
                 @ToggleFireRate.canceled -= m_Wrapper.m_WalkingActionsCallbackInterface.OnToggleFireRate;
+                @ADS.started -= m_Wrapper.m_WalkingActionsCallbackInterface.OnADS;
+                @ADS.performed -= m_Wrapper.m_WalkingActionsCallbackInterface.OnADS;
+                @ADS.canceled -= m_Wrapper.m_WalkingActionsCallbackInterface.OnADS;
+                @Gun1.started -= m_Wrapper.m_WalkingActionsCallbackInterface.OnGun1;
+                @Gun1.performed -= m_Wrapper.m_WalkingActionsCallbackInterface.OnGun1;
+                @Gun1.canceled -= m_Wrapper.m_WalkingActionsCallbackInterface.OnGun1;
+                @Gun2.started -= m_Wrapper.m_WalkingActionsCallbackInterface.OnGun2;
+                @Gun2.performed -= m_Wrapper.m_WalkingActionsCallbackInterface.OnGun2;
+                @Gun2.canceled -= m_Wrapper.m_WalkingActionsCallbackInterface.OnGun2;
+                @Gun3.started -= m_Wrapper.m_WalkingActionsCallbackInterface.OnGun3;
+                @Gun3.performed -= m_Wrapper.m_WalkingActionsCallbackInterface.OnGun3;
+                @Gun3.canceled -= m_Wrapper.m_WalkingActionsCallbackInterface.OnGun3;
+                @Gun4.started -= m_Wrapper.m_WalkingActionsCallbackInterface.OnGun4;
+                @Gun4.performed -= m_Wrapper.m_WalkingActionsCallbackInterface.OnGun4;
+                @Gun4.canceled -= m_Wrapper.m_WalkingActionsCallbackInterface.OnGun4;
             }
             m_Wrapper.m_WalkingActionsCallbackInterface = instance;
             if (instance != null)
@@ -399,6 +529,21 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @ToggleFireRate.started += instance.OnToggleFireRate;
                 @ToggleFireRate.performed += instance.OnToggleFireRate;
                 @ToggleFireRate.canceled += instance.OnToggleFireRate;
+                @ADS.started += instance.OnADS;
+                @ADS.performed += instance.OnADS;
+                @ADS.canceled += instance.OnADS;
+                @Gun1.started += instance.OnGun1;
+                @Gun1.performed += instance.OnGun1;
+                @Gun1.canceled += instance.OnGun1;
+                @Gun2.started += instance.OnGun2;
+                @Gun2.performed += instance.OnGun2;
+                @Gun2.canceled += instance.OnGun2;
+                @Gun3.started += instance.OnGun3;
+                @Gun3.performed += instance.OnGun3;
+                @Gun3.canceled += instance.OnGun3;
+                @Gun4.started += instance.OnGun4;
+                @Gun4.performed += instance.OnGun4;
+                @Gun4.canceled += instance.OnGun4;
             }
         }
     }
@@ -413,5 +558,10 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         void OnShoot(InputAction.CallbackContext context);
         void OnReload(InputAction.CallbackContext context);
         void OnToggleFireRate(InputAction.CallbackContext context);
+        void OnADS(InputAction.CallbackContext context);
+        void OnGun1(InputAction.CallbackContext context);
+        void OnGun2(InputAction.CallbackContext context);
+        void OnGun3(InputAction.CallbackContext context);
+        void OnGun4(InputAction.CallbackContext context);
     }
 }

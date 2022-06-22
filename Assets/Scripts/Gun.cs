@@ -5,38 +5,100 @@ using UnityEngine.UI;
 
 public class Gun : MonoBehaviour
 {
-    Transform cam;
+    //Camera
+    Transform camLoc;
+    public Quaternion rotationOne;
+    public Quaternion rotationTwo;
+
+    //Weapon delay times
     WaitForSeconds rapidFireWait;
     WaitForSeconds reloadWait;
+
+    //HUD elements
     public Text ammoDisplay;
     public Text fireRateDisplay;
+
+    //Weapon visual effects
     public ParticleSystem muzzleFlash;
 
+    //Weapon sound effects
+    public AudioSource shootSound;
+    public AudioSource reloadSound;
+    public AudioSource aimSound;
+    public AudioSource fireRateToggleSound;
+
+    //Aiming data
+    public Vector3 normalAimPosition;
+    public Vector3 adsAimPosition;
+    public Vector3 target;
+    public Vector2 _currentRotation;
+
+    //Aiming 
+    public float aimSmoothing = 10f;
+    public bool adsed = false;
+
+    //Gun specific data
+    [SerializeField] bool canFullAuto;
     [SerializeField] bool rapidFire = false;
     [SerializeField] float range = 50f;
     public float damage = 10f;
-    [SerializeField] float fireRate = 10f;
+    [SerializeField] float fireRate = 5f;
     [SerializeField] int maxAmmunition = 150;
     [SerializeField] int magSize = 30;
     [SerializeField] int currentAmmunition;
     [SerializeField] float reloadTime;
+    [SerializeField] float weaponSwayAmount;
+    [SerializeField] float mouseSensitivity;
 
+    //Weapon recoil variables
+    public bool randomizeRecoil = true;
+    public Vector2 randomRecoilConstraints;
+
+    InputManager inputManager;
+
+    private void Start()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        weaponSwayAmount = -0.5f;
+        mouseSensitivity = 0.35f;
+        randomizeRecoil = true;
+    }
+
+    public void ProcessLook(Vector2 input)
+    {
+        Vector2 mouseAxis = new Vector2(input.x, input.y);
+        mouseAxis *= mouseSensitivity;
+        _currentRotation += mouseAxis;
+        _currentRotation.y = Mathf.Clamp(_currentRotation.y, -80f, 80f);
+        transform.localPosition += (Vector3)mouseAxis * weaponSwayAmount / 1000;
+        transform.parent.parent.parent.localRotation = Quaternion.AngleAxis(_currentRotation.x, Vector3.up);
+        transform.parent.parent.localRotation = Quaternion.AngleAxis(-_currentRotation.y, Vector3.right);
+    }
 
     private void Awake()
     {
-        cam = Camera.main.transform;
+        camLoc = Camera.main.transform;
         rapidFireWait = new WaitForSeconds(1 / fireRate);
         reloadWait = new WaitForSeconds(reloadTime);
         currentAmmunition = magSize;
         fireRateDisplay.text = "Single Fire";
         ammoDisplay.text = currentAmmunition.ToString() + "/" + maxAmmunition.ToString();
+        target = normalAimPosition;
+    }
+
+    void Update()
+    {
+        DetermineAim();
     }
 
     public void Shoot()
     {
+        DetermineRecoil();
         RaycastHit hit;
         muzzleFlash.Play();
-        if (Physics.Raycast(cam.position, cam.forward, out hit, range))
+        shootSound.Play();
+        if (Physics.Raycast(camLoc.position, camLoc.forward, out hit, range))
         {
             if (hit.collider.GetComponent<Damageable>() != null)
             {
@@ -75,11 +137,13 @@ public class Gun : MonoBehaviour
         {
             currentAmmunition = magSize;
             maxAmmunition -= magSize;
+            reloadSound.Play();
         }
         else if (maxAmmunition > 0)
         {
             currentAmmunition = maxAmmunition;
             maxAmmunition = 0;
+            reloadSound.Play();
         }
         ammoDisplay.text = currentAmmunition.ToString() + "/" + maxAmmunition.ToString();
     }
@@ -92,15 +156,57 @@ public class Gun : MonoBehaviour
 
     public void ToggleFireRate()
     {
-        if (rapidFire)
+        if (canFullAuto)
+        {
+            if (rapidFire)
+            {
+                rapidFire = false;
+                fireRateDisplay.text = "Single Fire";
+            }
+            else
+            {
+                rapidFire = true;
+                fireRateDisplay.text = "Full auto";
+            }
+            fireRateToggleSound.Play();
+        }
+        else
         {
             rapidFire = false;
             fireRateDisplay.text = "Single Fire";
         }
+    }
+
+    public void ADS()
+    {
+        adsed = !adsed;
+        aimSound.Play();
+    }
+
+    private void DetermineAim()
+    {
+        if (adsed)
+        {
+            target = adsAimPosition;
+        }
         else
         {
-            rapidFire = true;
-            fireRateDisplay.text = "Full auto";
+            target = normalAimPosition;
+        }
+        Vector3 desiredPosition = Vector3.Lerp(transform.localPosition, target, Time.deltaTime * aimSmoothing);
+        transform.localPosition = desiredPosition;
+    }
+
+    private void DetermineRecoil()
+    {
+        transform.localPosition -= Vector3.forward * 0.1f;
+        if (randomizeRecoil)
+        {
+            float xRecoil = Random.Range(-randomRecoilConstraints.x, randomRecoilConstraints.x);
+            float yRecoil = Random.Range(-randomRecoilConstraints.y, randomRecoilConstraints.y);
+
+            Vector2 recoil2d = new Vector2(xRecoil, yRecoil);
+            _currentRotation += recoil2d;
         }
     }
 }

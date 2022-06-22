@@ -1,58 +1,41 @@
 fileFormatVersion: 2
-guid: 2bbc7effaf5e34b4e9358a6c93bb1382
+guid: a49d19f8e0001c440aa14452cb841d98
 ModelImporter:
   serializedVersion: 21202
   internalIDToNameTable:
   - first:
-      1: 100000
-    second: Rings
+      74: -1727372413437400804
+    second: Armature|AK47_DEQUIP
   - first:
-      1: 100002
-    second: //RootNode
+      74: 3842527703067258803
+    second: Armature|AK47_EQUIP
   - first:
-      4: 400000
-    second: Rings
+      74: 4567484802457741005
+    second: Armature|Ak47_IDLE
   - first:
-      4: 400002
-    second: //RootNode
+      74: -8865392007405163434
+    second: Armature|AK47_Reload
   - first:
-      21: 2100000
-    second: Mat
+      74: -7679257462144042560
+    second: Armature|AK47_RUN
   - first:
-      23: 2300000
-    second: Rings
+      74: -8052327910631341838
+    second: Armature|AK47_WALK
   - first:
-      23: 2300002
-    second: //RootNode
-  - first:
-      33: 3300000
-    second: Rings
-  - first:
-      33: 3300002
-    second: //RootNode
-  - first:
-      43: 4300000
-    second: TAN_LR_Scope_01
-  - first:
-      43: 4300002
-    second: Rings
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Mat
-    second: {fileID: 2100000, guid: 28f0b13c7e9707746b5e0b3336181560, type: 2}
+      74: 2380199009061387691
+    second: Armature|DEFAULT_STATE
+  externalObjects: {}
   materials:
     materialImportMode: 2
-    materialName: 2
-    materialSearch: 2
-    materialLocation: 0
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
-    removeConstantScaleCurves: 0
+    removeConstantScaleCurves: 1
     motionNodeName: 
     rigImportErrors: 
     rigImportWarnings: 
@@ -70,20 +53,20 @@ ModelImporter:
     extraExposedTransformPaths: []
     extraUserProperties: []
     clipAnimations: []
-    isReadable: 1
+    isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 0.04217734
+    globalScale: 1
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
     sortHierarchyByName: 1
-    importVisibility: 0
+    importVisibility: 1
     importBlendShapes: 1
-    importCameras: 0
-    importLights: 0
-    nodeNameCollisionStrategy: 0
-    fileIdsGeneration: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
@@ -100,7 +83,7 @@ ModelImporter:
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
-    secondaryUVMarginMethod: 0
+    secondaryUVMarginMethod: 1
     secondaryUVMinLightmapResolution: 40
     secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
@@ -114,7 +97,7 @@ ModelImporter:
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
   referencedClips: []
-  importAnimation: 0
+  importAnimation: 1
   humanDescription:
     serializedVersion: 3
     human: []
@@ -126,17 +109,17 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 0.04217734
+    globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   autoGenerateAvatarMappingIfUnspecified: 1
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   avatarSetup: 0
-  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   additionalBone: 0
   userData: 
   assetBundleName: 

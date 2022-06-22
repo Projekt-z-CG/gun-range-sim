@@ -137,7 +137,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7445828029120065504, guid: 3f1c5449db065644d9c6b27c4a4a7d8b, type: 3}
       propertyPath: m_Name
-      value: Player with scripts
+      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3f1c5449db065644d9c6b27c4a4a7d8b, type: 3}
@@ -215,14 +215,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a53d9fe14d62444cad45ff2f4f5766b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ammoDisplay: {fileID: 0}
-  fireRateDisplay: {fileID: 0}
-  muzzleFlash: {fileID: 0}
   rapidFire: 0
   range: 50
   damage: 10
   fireRate: 5
   maxAmmunition: 30
-  magSize: 30
   currentAmmunition: 0
   reloadTime: 2

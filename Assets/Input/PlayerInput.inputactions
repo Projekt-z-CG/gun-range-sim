@@ -76,6 +76,51 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "ADS",
+                    "type": "Button",
+                    "id": "b5cfd473-da41-43ef-81b0-700e8e4af41a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Gun1",
+                    "type": "Button",
+                    "id": "80e19f0a-55c0-4bab-af54-959f3031acc2",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Gun2",
+                    "type": "Button",
+                    "id": "b4cb75f4-b6e5-4bb7-92e4-b1e809fe86ce",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Gun3",
+                    "type": "Button",
+                    "id": "cda38a76-7be4-4a9d-be7f-9a94ddb9b96f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Gun4",
+                    "type": "Button",
+                    "id": "02b37359-20ed-4630-aa13-2583235805bf",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -219,6 +264,61 @@
                     "processors": "",
                     "groups": "",
                     "action": "ToggleFireRate",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8a43a0a7-47b6-46bd-a35c-8321e73f2aa7",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ADS",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e67e3be6-2ecb-4828-9afc-ba3522d0b587",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Gun1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5297c98f-9af0-44d3-8b70-e346e3584a92",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Gun2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f9b9bba2-37c6-4b65-ad88-61c636ea46b4",
+                    "path": "<Keyboard>/3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Gun3",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e1eb5881-9463-477a-857e-d9c97f032d98",
+                    "path": "<Keyboard>/4",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Gun4",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
