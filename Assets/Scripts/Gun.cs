@@ -7,8 +7,6 @@ public class Gun : MonoBehaviour
 {
     //Camera
     Transform camLoc;
-    public Quaternion rotationOne;
-    public Quaternion rotationTwo;
 
     //Weapon delay times
     WaitForSeconds rapidFireWait;
@@ -203,7 +201,7 @@ public class Gun : MonoBehaviour
         if (randomizeRecoil)
         {
             float xRecoil = Random.Range(-randomRecoilConstraints.x, randomRecoilConstraints.x);
-            float yRecoil = Random.Range(-randomRecoilConstraints.y, randomRecoilConstraints.y);
+            float yRecoil = Random.Range(0, randomRecoilConstraints.y);
 
             Vector2 recoil2d = new Vector2(xRecoil, yRecoil);
             _currentRotation += recoil2d;

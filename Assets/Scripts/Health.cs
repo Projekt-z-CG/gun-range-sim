@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-
     public delegate void EnemyKilled();
     public static event EnemyKilled OnEnemyKilled;
-
+    InputManager inputManager;
     public float maxHealth;
     SkinnedMeshRenderer skinnedMeshRenderer;
 
@@ -18,6 +17,13 @@ public class Health : MonoBehaviour
     public float blinkIntensity;
     public float blinkDuration;
     float blinkTimer;
+
+    void Awake()
+    {
+        inputManager = GameObject.Find("Player Switch").GetComponent<InputManager>();
+        Debug.Log(inputManager.score);
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -51,10 +57,12 @@ public class Health : MonoBehaviour
         AiDeathState deathState = agent.stateMachine.GetState(AiStateId.Death) as AiDeathState;
         agent.stateMachine.ChangeState(AiStateId.Death);
 
-        if(OnEnemyKilled != null)
+        if (OnEnemyKilled != null)
         {
             OnEnemyKilled();
             Destroy(gameObject, 3);
+            inputManager.score += 50;
+            Debug.Log(inputManager.score);
         }
     }
 

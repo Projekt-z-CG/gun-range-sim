@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class InputManager : MonoBehaviour
 {
@@ -16,9 +17,11 @@ public class InputManager : MonoBehaviour
     [SerializeField] Gun gun4;
     Gun currentGun;
 
-    public Quaternion rotationOne;
-    public Quaternion rotationTwo;
+    public Text scoreText;
 
+    public int score = 0;
+
+    public Vector2 rotationVal;
     Coroutine fireCoroutine;
 
     void Awake()
@@ -42,6 +45,8 @@ public class InputManager : MonoBehaviour
         walking.Reload.performed += _ => currentGun.Reload();
         walking.ToggleFireRate.performed += _ => currentGun.ToggleFireRate();
         walking.ADS.performed += _ => currentGun.ADS();
+
+        scoreText.text = "Score: " + score;
     }
 
     void Start()
@@ -51,25 +56,33 @@ public class InputManager : MonoBehaviour
 
     void SwitchGun1()
     {
+        rotationVal = currentGun._currentRotation;
         currentGun = gun1;
+        currentGun._currentRotation = rotationVal;
         weaponSwitch.SetIndex(0);
     }
 
     void SwitchGun2()
     {
+        rotationVal = currentGun._currentRotation;
         currentGun = gun2;
+        currentGun._currentRotation = rotationVal;
         weaponSwitch.SetIndex(1);
     }
 
     void SwitchGun3()
     {
+        rotationVal = currentGun._currentRotation;
         currentGun = gun3;
+        currentGun._currentRotation = rotationVal;
         weaponSwitch.SetIndex(2);
     }
 
     void SwitchGun4()
     {
+        rotationVal = currentGun._currentRotation;
         currentGun = gun4;
+        currentGun._currentRotation = rotationVal;
         weaponSwitch.SetIndex(3);
     }
 
@@ -77,6 +90,7 @@ public class InputManager : MonoBehaviour
     void FixedUpdate()
     {
         motor.ProcessMove(walking.Movement.ReadValue<Vector2>());
+        scoreText.text = "Score: " + score;
     }
 
     void LateUpdate()

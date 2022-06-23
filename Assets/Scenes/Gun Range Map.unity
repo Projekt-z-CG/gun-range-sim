@@ -2510,6 +2510,14 @@ PrefabInstance:
       propertyPath: fireRateToggleSound
       value: 
       objectReference: {fileID: 1278244810}
+    - target: {fileID: 216642286949909947, guid: 0fa3d75f1300fbd44b690e8dace83273, type: 3}
+      propertyPath: randomRecoilConstraints.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 216642286949909947, guid: 0fa3d75f1300fbd44b690e8dace83273, type: 3}
+      propertyPath: randomRecoilConstraints.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5422109252608611505, guid: 0fa3d75f1300fbd44b690e8dace83273, type: 3}
       propertyPath: m_Name
       value: Player Switch 1

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -17,10 +18,8 @@ public class PlayerHealth : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-//        if (health <= 0)
-//        {
-//            die();
-//        }
+        if (health <= 0)
+            Die();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -32,8 +31,8 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    void die()
+    void Die()
     {
-        Destroy(gameObject);
+        Scene scene = SceneManager.GetActiveScene(); SceneManager.LoadScene(scene.name);
     }
 }
