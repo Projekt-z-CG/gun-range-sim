@@ -108,6 +108,12 @@ public class Gun : MonoBehaviour
             {
                 hitBox.OnRayCastHit(this);
             }
+
+            var target = hit.collider.GetComponent<Target>();
+            if (target != null )
+            {
+                target.OnRayCastHit();
+            }
         }
         currentAmmunition--;
         ammoDisplay.text = currentAmmunition.ToString() + "/" + maxAmmunition.ToString();

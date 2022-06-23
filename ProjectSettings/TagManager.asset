@@ -9,6 +9,8 @@ TagManager:
   - FinishButton
   - StartButton
   - Weapon
+  - Head
+  - Torso
   layers:
   - Default
   - TransparentFX

@@ -9,8 +9,8 @@ public class MovingTargets : MonoBehaviour {
  
     void Start ()
     {
-        if(speed == 0) 
-            speed = Random.Range(5.0f,10.0f);
+        // if(speed == 0) 
+        //     speed = Random.Range(5.0f,10.0f);
     }
 
     void Update ()

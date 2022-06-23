@@ -25,17 +25,14 @@ public class MovingPlatform : MonoBehaviour {
         }
         if(collider.gameObject.tag == "Player")
         {
-            Debug.Log("Trigger enter");
             collider.transform.parent = transform;
             // StartCoroutine(deactivatePlatform());
         }
     }
 
     void OnTriggerExit(Collider collider) {
-        Debug.Log(collider.gameObject.name + " Trigger exit");
         if(collider.tag == "Player") 
         {
-            Debug.Log("Trigger exit");
             collider.gameObject.transform.parent = GameObject.Find("Structure").transform;
             // collider.gameObject.transform.SetParent(GameObject.Find("Structure").transform, true);
         }
