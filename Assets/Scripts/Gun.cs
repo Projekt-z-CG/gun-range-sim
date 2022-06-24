@@ -7,7 +7,7 @@ public class Gun : MonoBehaviour
 {
     //Camera
     Transform camLoc;
-
+    InputManager inputManager;
     //Weapon delay times
     WaitForSeconds rapidFireWait;
     WaitForSeconds reloadWait;
@@ -47,12 +47,11 @@ public class Gun : MonoBehaviour
     [SerializeField] float reloadTime;
     [SerializeField] float weaponSwayAmount;
     [SerializeField] float mouseSensitivity;
-
+    private int maxAmmoVal;
     //Weapon recoil variables
     public bool randomizeRecoil = true;
     public Vector2 randomRecoilConstraints;
 
-    InputManager inputManager;
 
     private void Start()
     {
@@ -61,6 +60,8 @@ public class Gun : MonoBehaviour
         weaponSwayAmount = -0.5f;
         mouseSensitivity = 0.35f;
         randomizeRecoil = true;
+        inputManager = GameObject.FindWithTag("Player").GetComponent<InputManager>();
+        maxAmmoVal = maxAmmunition;
     }
 
     public void ProcessLook(Vector2 input)
@@ -88,6 +89,7 @@ public class Gun : MonoBehaviour
     void Update()
     {
         DetermineAim();
+        UpdateAmmo();
     }
 
     public void Shoot()
@@ -112,7 +114,7 @@ public class Gun : MonoBehaviour
             var target = hit.collider.GetComponent<Target>();
             if (target != null )
             {
-                target.OnRayCastHit();
+                target.OnRayCastHit(hit.point, hit.normal);
             }
         }
         currentAmmunition--;
@@ -211,6 +213,15 @@ public class Gun : MonoBehaviour
 
             Vector2 recoil2d = new Vector2(xRecoil, yRecoil);
             _currentRotation += recoil2d;
+        }
+    }
+
+    private void UpdateAmmo()
+    {
+        if(inputManager.score > inputManager.prevScore && (inputManager.score - inputManager.prevScore)>=1000)
+        {
+            maxAmmunition = maxAmmoVal;
+            inputManager.prevScore = inputManager.score;
         }
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class Target : MonoBehaviour
 {
     public int distance = 1;
-
+    [SerializeField] GameObject hitEffect;
     InputManager inputManager;
 
     void Start()
@@ -13,7 +13,9 @@ public class Target : MonoBehaviour
         inputManager = GameObject.Find("Player Switch 1").GetComponent<InputManager>();
     }
 
-    public void OnRayCastHit() {
+    public void OnRayCastHit(Vector3 hitPos, Vector3 hitNormal) {
+        Instantiate(hitEffect, hitPos, Quaternion.LookRotation(hitNormal));
+
         if (this.gameObject.tag == "Head")
         {
             inputManager.score += 10 * distance;

@@ -20,7 +20,7 @@ public class EnemyManager : MonoBehaviour
     // Update is called once per frame
     void SpawnNewEnemy()
     {
-        int randomNumber = Mathf.RoundToInt(Random.Range(0f, m_SpawnPoints.Length-1));
+        int randomNumber = Mathf.RoundToInt(Random.Range(1f, m_SpawnPoints.Length-1));
 
         Instantiate(m_EnemyPrefab, m_SpawnPoints[randomNumber].transform.position, Quaternion.identity);
     }

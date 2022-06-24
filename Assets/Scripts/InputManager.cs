@@ -20,6 +20,7 @@ public class InputManager : MonoBehaviour
     public Text scoreText;
 
     public int score = 0;
+    public int prevScore = 0;
 
     public Vector2 rotationVal;
     Coroutine fireCoroutine;
