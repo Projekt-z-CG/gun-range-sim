@@ -4,6 +4,9 @@ using UnityEngine;
 
 [CreateAssetMenu()]
 
+/**
+* Script for holding AI configuration. maxTime is ressponsible for updating the enemy, maxDistance for maximal distance of enemy from player
+**/
 public class AiAgentConfig : ScriptableObject
 {
     public float maxTime = 1.0f;
