@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-
+/**
+* Script for managing state machines for enemy AI
+**/
 public class AiAgent : MonoBehaviour
 {
     public AiStateMachine stateMachine;
