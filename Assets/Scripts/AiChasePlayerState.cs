@@ -3,12 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+/**
+* AI state for chasing the player
+**/
 public class AiChasePlayerState : AiState
 {
 
     public Transform playerTransform;
     float timer = 0.0f;
-
+    /**
+    * Get state ID
+    **/
     public AiStateId GetId()
     {
         return AiStateId.chasePlayer;
