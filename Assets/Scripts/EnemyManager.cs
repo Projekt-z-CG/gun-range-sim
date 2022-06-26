@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/**
+* Enemy manager for zombie game mode
+**/
 public class EnemyManager : MonoBehaviour
 {
     public Transform[] m_SpawnPoints;
@@ -11,13 +13,13 @@ public class EnemyManager : MonoBehaviour
     {
         SpawnNewEnemy();
     }
-
+    // When a enemy is killed spawn a new enemy
     private void OnEnable()
     {
         Health.OnEnemyKilled += SpawnNewEnemy;
     }
 
-    // Update is called once per frame
+    // Spawn new enemy in one of the spawn points
     void SpawnNewEnemy()
     {
         int randomNumber = Mathf.RoundToInt(Random.Range(1f, m_SpawnPoints.Length-1));
