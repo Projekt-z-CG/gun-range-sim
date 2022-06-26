@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+/**
+* Script for connecting AI animations with enemies movement
+**/
 public class AiLocomotion : MonoBehaviour
 {
 
