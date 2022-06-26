@@ -4,27 +4,44 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
+/**
+ * Script which handles Input from player
+ */
 public class InputManager : MonoBehaviour
 {
-    // Start is called before the first frame update
+    // Object to store player input reference
     private PlayerInput playerInput;
+    // Object to store player input walking actions reference
     private PlayerInput.WalkingActions walking;
+    // Object to store player motor reference
     private PlayerMotor motor;
+    // Object to store weapon switch reference
     WeaponSwitching weaponSwitch;
+    // Object to store aussault rifle m4 reference
     [SerializeField] Gun gun1;
+    // Object to store pistol reference
     [SerializeField] Gun gun2;
+    // Object to store assault rifle ak reference
     [SerializeField] Gun gun3;
+    // Object to store sniper reference
     [SerializeField] Gun gun4;
+    // Object to store current gun reference
     Gun currentGun;
 
+    // Text object to store score
     public Text scoreText;
 
+    // Variable to store score
     public int score = 0;
+    // Variable to store previous score value
     public int prevScore = 0;
 
+    // Vector2 to store rotation values
     public Vector2 rotationVal;
+    // Courotine to manage full automatic shooting
     Coroutine fireCoroutine;
 
+    // Used to set up variables, and read input calls
     void Awake()
     {
         playerInput = new PlayerInput();
@@ -50,11 +67,13 @@ public class InputManager : MonoBehaviour
         scoreText.text = "Score: " + score;
     }
 
+    // Used to set the current gun
     void Start()
     {
         currentGun = gun1;
     }
 
+    // Used to change the gun object and pass rotation value
     void SwitchGun1()
     {
         rotationVal = currentGun._currentRotation;
@@ -63,6 +82,7 @@ public class InputManager : MonoBehaviour
         weaponSwitch.SetIndex(0);
     }
 
+    // Used to change the gun object and pass rotation value
     void SwitchGun2()
     {
         rotationVal = currentGun._currentRotation;
@@ -71,6 +91,7 @@ public class InputManager : MonoBehaviour
         weaponSwitch.SetIndex(1);
     }
 
+    // Used to change the gun object and pass rotation value
     void SwitchGun3()
     {
         rotationVal = currentGun._currentRotation;
@@ -79,6 +100,7 @@ public class InputManager : MonoBehaviour
         weaponSwitch.SetIndex(2);
     }
 
+    // Used to change the gun object and pass rotation value
     void SwitchGun4()
     {
         rotationVal = currentGun._currentRotation;
@@ -87,23 +109,26 @@ public class InputManager : MonoBehaviour
         weaponSwitch.SetIndex(3);
     }
 
-    // Update is called once per frame
+    // FixedUpdate called mulitple times per frame, reads and calls function to process move input
     void FixedUpdate()
     {
         motor.ProcessMove(walking.Movement.ReadValue<Vector2>());
         scoreText.text = "Score: " + score;
     }
 
+    // Called after update, process mouse input
     void LateUpdate()
     {
         currentGun.ProcessLook(walking.Look.ReadValue<Vector2>());
     }
 
+    // Used to create coroutine to process full automatic shooting
     void StartFiring()
     {
         fireCoroutine = StartCoroutine(currentGun.RapidFire());
     }
 
+    // Used to stop coroutine processing full automatic shooting
     void StopFiring()
     {
         if (fireCoroutine != null)
@@ -112,10 +137,13 @@ public class InputManager : MonoBehaviour
         }
     }
 
+    // Enables walking object
     private void OnEnable()
     {
         walking.Enable();
     }
+
+    // Disables walking object
     private void OnDisable()
     {
         walking.Disable();
