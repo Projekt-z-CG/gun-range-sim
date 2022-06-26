@@ -2,16 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+
+/**
+ * Script handling timer behavior
+ */
 public class Timer : MonoBehaviour
 {
+    // Variable storing time spent in seconds
     private float timeSpent = 0;
+    // Flag storing info if timer is running
     private bool timerIsRunning = false;
+    // Flag storing info if Player is near a Button
     public bool nearButton = false;
+    // Flag storing info if near by button is Finish Button
     private bool isFinishButton = false;
+    // Variable storing reference to staring point of map
     public GameObject spawn;
+    // Variable storing reference to timer text
     public TMP_Text timeText;
+    // Variable storing refernece to tip text
     public TMP_Text tip;
 
+    // Update is called once per frame, and shows time on timer, shows tips if near button, and handles starting/stopping/restarting timer 
     void Update()
     {
         if (timerIsRunning)
@@ -64,6 +76,7 @@ public class Timer : MonoBehaviour
         }
     }
 
+    // Resets, and stops timer, and moves Plater to Spawn point when lands in Lava, or sets relevant flags when near Button 
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.name == "Lava")
@@ -86,6 +99,7 @@ public class Timer : MonoBehaviour
         }
     }
 
+    // Resets the relevant flags when moving away from the button.
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.name == "Button")
