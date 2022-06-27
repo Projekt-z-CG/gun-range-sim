@@ -18,17 +18,23 @@ public class AiDeathState : AiState
         agent.navMeshAgent.speed = 0.0f;
 
     }
-
+    /**
+    * Exit state
+    **/
     public void Exit(AiAgent agent)
     {
         
     }
-
+    /**
+    * Get state ID
+    **/
     public AiStateId GetId()
     {
         return AiStateId.Death;
     }
-
+    /**
+    * Update
+    **/
     public void Update(AiAgent agent)
     {
         
