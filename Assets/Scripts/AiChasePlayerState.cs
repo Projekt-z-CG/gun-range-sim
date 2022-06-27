@@ -8,7 +8,7 @@ using UnityEngine.AI;
 **/
 public class AiChasePlayerState : AiState
 {
-
+    //position where the enemy will go
     public Transform playerTransform;
     float timer = 0.0f;
     /**
@@ -18,6 +18,9 @@ public class AiChasePlayerState : AiState
     {
         return AiStateId.chasePlayer;
     }
+    /**
+    * Enter ChasePlayerState
+    **/
     public void Enter(AiAgent agent)
     {
         if (playerTransform == null)
@@ -25,6 +28,9 @@ public class AiChasePlayerState : AiState
             playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
         }
     }
+    /**
+    * Update the position where the enemy should go
+    **/
     public void Update(AiAgent agent)
     {
         timer -= Time.deltaTime;
@@ -38,6 +44,9 @@ public class AiChasePlayerState : AiState
             timer = agent.config.maxTime;
         }
     }
+    /**
+    * Exit ChasePlayerState
+    **/
     public void Exit(AiAgent agent)
     {
 
