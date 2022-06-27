@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Hitbox : MonoBehaviour
 {
+    //Health of an enemy
     public Health health;
     // Start is called before the first frame update
 
