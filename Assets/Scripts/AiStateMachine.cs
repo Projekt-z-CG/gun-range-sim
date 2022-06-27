@@ -7,10 +7,14 @@ using UnityEngine;
 **/
 public class AiStateMachine
 {
+    // States that can be used
     public AiState[] states;
+    // AI agent
     public AiAgent agent;
+    // ID of the current state
     public AiStateId currentState;
-
+    
+    // Create state machine
     public AiStateMachine(AiAgent agent)
     {
         this.agent = agent;
@@ -29,7 +33,7 @@ public class AiStateMachine
         int index = (int)stateId;
         return states[index];
     }
-
+    //Update
     public void Update()
     {
         GetState(currentState)?.Update(agent);
