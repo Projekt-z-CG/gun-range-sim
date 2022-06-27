@@ -13,8 +13,12 @@ public enum AiStateId
 
 public interface AiState
 {
+    //Get id for AI state
     AiStateId GetId();
+    //Enter AI state
     void Enter(AiAgent agent);
+    //Update AI state
     void Update(AiAgent agent);
+    //Exit AI state
     void Exit(AiAgent agent);
 }
