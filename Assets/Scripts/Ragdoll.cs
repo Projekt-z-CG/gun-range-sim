@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class Ragdoll : MonoBehaviour
 {
+    //rigibody of an enemy
     Rigidbody[] rigiBodies;
+    //animator for the enemy
     Animator animator;
 
     // Start is called before the first frame update
@@ -24,7 +26,7 @@ public class Ragdoll : MonoBehaviour
         }
         animator.enabled = true;
     } 
-
+    // Activate ragdoll for an enemy
     public void ActivateRagdoll()
     {
         foreach(var rigiBody in rigiBodies)
