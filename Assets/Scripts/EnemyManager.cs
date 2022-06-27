@@ -6,7 +6,9 @@ using UnityEngine;
 **/
 public class EnemyManager : MonoBehaviour
 {
+    // Array of spawn points
     public Transform[] m_SpawnPoints;
+    // Enemy which will be spawned
     public GameObject m_EnemyPrefab;
     // Start is called before the first frame update
     void Start()
