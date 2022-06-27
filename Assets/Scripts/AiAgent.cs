@@ -7,11 +7,17 @@ using UnityEngine.AI;
 **/
 public class AiAgent : MonoBehaviour
 {
+    //state machine of the AI agent
     public AiStateMachine stateMachine;
+    //state in which the AI agent is in
     public AiStateId intialState;
+    //configuration of the AI agent
     public AiAgentConfig config;
+    //nav mesh for AI agent
     public NavMeshAgent navMeshAgent;
+    //ragdoll for AI agent
     public Ragdoll ragdoll;
+    //skinned mesh render for AI agent
     public SkinnedMeshRenderer skinnedMeshRenderer;
    
     // Start is called before the first frame update
