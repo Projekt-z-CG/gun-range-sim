@@ -4,20 +4,30 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
+   
     public delegate void EnemyKilled();
+    
     public static event EnemyKilled OnEnemyKilled;
+    //Input manager
     InputManager inputManager;
+    // Maximum health of an enemy
     public float maxHealth;
+    // Skinned render mesh
     SkinnedMeshRenderer skinnedMeshRenderer;
 
     [HideInInspector]
     AiAgent agent;
+    // Current health of an enemy
     public float currentHealth;
+    // Ragdoll for the enemy
     Ragdoll ragdoll;
+    // Blink ntensity of enemy when beeing hit
     public float blinkIntensity;
+    // Blink duration of enemy when beeing hit
     public float blinkDuration;
     float blinkTimer;
-
+    
+    // Find input manager
     void Awake()
     {
         inputManager = GameObject.Find("Player Switch").GetComponent<InputManager>();
@@ -40,7 +50,7 @@ public class Health : MonoBehaviour
         }
     }
 
-
+    // Enemy take damage from player
     public void TakeDamage(float amount)
     {
         currentHealth -= amount;
@@ -51,7 +61,7 @@ public class Health : MonoBehaviour
 
         blinkTimer = blinkDuration;
     }
-
+    // Enemy die
     public void Die()
     {
         AiDeathState deathState = agent.stateMachine.GetState(AiStateId.Death) as AiDeathState;
@@ -66,7 +76,7 @@ public class Health : MonoBehaviour
         }
     }
 
-
+    // Enemy update
     public void Update()
     {
         blinkTimer -= Time.deltaTime;
