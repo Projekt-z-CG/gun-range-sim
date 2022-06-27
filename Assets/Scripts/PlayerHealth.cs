@@ -6,8 +6,11 @@ using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
+    // UI display of health
     public Text healthText;
+    // Player health
     int health = 100;
+    // Player killed function
     public delegate void PlayerKilled();
     // Start is called before the first frame update
     void Start()
@@ -21,7 +24,7 @@ public class PlayerHealth : MonoBehaviour
         if (health <= 0)
             Die();
     }
-
+    // Getting attacked by an enemy
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Weapon")
@@ -30,7 +33,7 @@ public class PlayerHealth : MonoBehaviour
             healthText.text = "Health: " + health.ToString();
         }
     }
-
+    // Player die
     void Die()
     {
         Scene scene = SceneManager.GetActiveScene(); SceneManager.LoadScene(scene.name);
