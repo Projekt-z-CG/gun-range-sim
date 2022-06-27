@@ -9,6 +9,8 @@ using UnityEngine;
 **/
 public class AiAgentConfig : ScriptableObject
 {
+    //maximal time when to update the position of the player
     public float maxTime = 1.0f;
+    //maximal distance how close an enemy can come near the player
     public float maxDistance = 1.0f;
 }
